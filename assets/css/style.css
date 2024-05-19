@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+:root{
+    --primary-color: rgb(17, 86, 102);
+    font-size: 62.5%;
+    --primary-color-darker: rgb(9, 48, 56);
+    font-size: 62.5%;
+}
+
+*{
+    box-sizing: border-box; 
+    outline: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-color);
+    font-family: sans-serif;
+    font-size: 2.5rem;
+    /* background-image: url("/07\ -\ Exercicio/assets/img/bg/ceu-garoa.jpg"); */
+    
+    
+}
+
+.container{
+    max-width: 85rem;
+    margin: 5rem auto;
+    background-color:#fff;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+
+.container h1 {
+    text-align: center;
+}
+
+.current{
+}
+
+.current-title{
+    padding: 1rem;
+    margin: 0;
+    text-align: center;
+}
+
+.current-content{
+    justify-content: center;
+}
+
+.current-temperature{
+    font-size: 7.6rem;
+    height: 10rem;
+    margin: 0;
+    justify-content: center;
+}
+
+.current-info{
+    display: flex;
+    flex-direction: column; 
+}
+
+.icone-grande{
+    height: 10rem;
+    object-fit: contain;
+    
+}
+
+.current-temperature-text{
+    background-color: #fff;
+    margin: 0;
+    text-align: center;
+    font-size: 3.5rem;
+    font-weight: bold;
+}
+
+.current-content-temp{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.week{
+    margin-top: 2rem;
+}
+
+.forecast{
+    display: flex;
+    justify-content: space-between;
+
+
+}
+
+
+.card{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    background: rgb(2,0,36);
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 0%, rgba(255,255,255,1) 100%);
+
+    overflow-wrap: break-word;
+
+    border-radius: 0 0 2rem 2rem;
+    width: 13rem;
+}
+
+.card-icon{
+    height: 10rem;
+}
+
+.max-min{
+}
+
+.max-min p{
+    margin: 1rem 0rem;
+    justify-content: center;
+}
+
+.max-icon, .min-icon{
+    height: 5rem;
+    color: #fff;
+}
+
+.max-line, .min-line{
+    display: flex;
+    color: #fff;
+}
+
+.card-description{
+    margin: 0rem;
+    text-align: center;
+    font-size: 2rem;
+    height: 7rem;
+    width: 10rem;
+}
+
+.dayOfWeek{
+    margin: 0;
+}
+
