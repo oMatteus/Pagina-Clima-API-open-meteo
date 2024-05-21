@@ -36,8 +36,6 @@ body {
     text-align: center;
 }
 
-.current{
-}
 
 .current-title{
     padding: 1rem;
@@ -88,8 +86,6 @@ body {
 .forecast{
     display: flex;
     justify-content: space-between;
-
-
 }
 
 
@@ -100,8 +96,8 @@ body {
 
     align-items: center;
 
-    background: rgb(2,0,36);
-    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 0%, rgba(255,255,255,1) 100%);
+    background: rgb(255, 255, 255);
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgb(80, 80, 80) 0%, rgba(255,255,255,1) 100%);
 
     overflow-wrap: break-word;
 
@@ -111,9 +107,6 @@ body {
 
 .card-icon{
     height: 10rem;
-}
-
-.max-min{
 }
 
 .max-min p{
@@ -143,3 +136,38 @@ body {
     margin: 0;
 }
 
+
+
+@media (max-width: 410px){
+
+
+    .forecast{
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .card{
+        width: initial;
+        gap: 1rem;
+
+        display: grid;
+
+        grid-template-columns: repeat(4, 1fr);
+
+        background: rgb(255, 255, 255);
+        background: linear-gradient(270deg, rgba(2,0,36,1) 0%, rgb(80, 80, 80) 0%, rgba(255,255,255,1) 100%);
+
+        border-radius: 0 2rem 2rem 0;
+    }
+
+    .day-of-week{
+        padding-left: 1rem;
+    }
+
+    .max-min{
+        padding-right: 1rem;
+    }
+
+
+
+}
