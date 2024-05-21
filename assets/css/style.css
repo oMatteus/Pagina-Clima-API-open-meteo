@@ -93,7 +93,9 @@ body {
     background-color: #fff;
     display: flex;
     flex-direction: column;
+    
 
+    
     align-items: center;
 
     background: rgb(255, 255, 255);
@@ -126,10 +128,12 @@ body {
 
 .card-description{
     margin: 0rem;
-    text-align: center;
+
     font-size: 2rem;
     height: 7rem;
     width: 10rem;
+
+    align-items: center;
 }
 
 .dayOfWeek{
@@ -138,8 +142,11 @@ body {
 
 
 
-@media (max-width: 410px){
+@media (max-width: 450px){
 
+    .container{
+        max-width: 40rem;
+    }
 
     .forecast{
         flex-direction: column;
@@ -169,5 +176,75 @@ body {
     }
 
 
+    .day-of-week{
+        text-align: center;
+        margin: 0;
+    }
+    .card-description{
+        display: flex;
+        font-size: 2rem; font-weight: bold;
+        width: 100%;
+        padding: 0.5rem;
+    }
+    .card-description p{
+        align-items: center;
+        justify-content: center ;
+    }
+}
+
+
+@media (min-width: 451px) and (max-width: 810px){
+
+    .container{
+        max-width: 95vw;
+    }
+
+    .forecast{
+
+        display: grid;
+        grid-template-columns: 1fr;
+
+        gap: 2rem;
+    }
+
+    .card{
+        width: initial;
+        gap: 1rem;
+
+        display: grid;
+
+        grid-template-columns: 1fr 1fr 2fr 1fr;
+        /* grid-template-columns: 7rem 10rem 2fr 1fr; */
+
+        background: rgb(255, 255, 255);
+        background: linear-gradient(270deg, rgba(2,0,36,1) 0%, rgb(80, 80, 80) 0%, rgba(255,255,255,1) 100%);
+
+        border-radius: 0 2rem 2rem 0;
+
+        justify-content: center;
+    }
+
+
+    .day-of-week{
+        text-align: center;
+        margin: 0;
+    }
+
+    .max-min{
+        padding-right: 2rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-description{
+        display: flex;
+        font-size: 2rem; font-weight: bold;
+        width: 100%;
+        padding: 0.5rem;
+    }
+    .card-description p{
+        align-items: center;
+        justify-content: center ;
+    }
 
 }
