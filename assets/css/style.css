@@ -10,6 +10,7 @@
 *{
     box-sizing: border-box; 
     outline: 0;
+    overflow: hidden;
 }
 
 body {
@@ -126,6 +127,11 @@ body {
     color: #fff;
 }
 
+.max-line p, .min-line p{
+    width: 5rem;
+    text-align: center;
+}
+
 .card-description{
     margin: 0rem;
 
@@ -142,10 +148,10 @@ body {
 
 
 
-@media (max-width: 450px){
+@media (max-width: 440px){
 
     .container{
-        max-width: 40rem;
+        max-width: 95vw;
     }
 
     .forecast{
@@ -159,7 +165,7 @@ body {
 
         display: grid;
 
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
 
         background: rgb(255, 255, 255);
         background: linear-gradient(270deg, rgba(2,0,36,1) 0%, rgb(80, 80, 80) 0%, rgba(255,255,255,1) 100%);
@@ -167,12 +173,17 @@ body {
         border-radius: 0 2rem 2rem 0;
     }
 
+    .card-icon{
+        margin: auto;
+    }
+
     .day-of-week{
         padding-left: 1rem;
     }
 
     .max-min{
-        padding-right: 1rem;
+        justify-content: center;
+        grid-area: 1/*linha inicial*/ / -1/*linha final*/ / 2/*coluna inicial*/ / 3/*coluna final*/;
     }
 
 
@@ -181,19 +192,20 @@ body {
         margin: 0;
     }
     .card-description{
-        display: flex;
-        font-size: 2rem; font-weight: bold;
+
+        grid-column: span 3;
+
+        font-size: 2.8rem; font-weight: bold;
         width: 100%;
         padding: 0.5rem;
+        text-align: center;
     }
-    .card-description p{
-        align-items: center;
-        justify-content: center ;
-    }
+    
+
 }
 
 
-@media (min-width: 451px) and (max-width: 810px){
+@media (min-width: 441px) and (max-width: 810px){
 
     .container{
         max-width: 95vw;
@@ -213,7 +225,7 @@ body {
 
         display: grid;
 
-        grid-template-columns: 1fr 1fr 2fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
         /* grid-template-columns: 7rem 10rem 2fr 1fr; */
 
         background: rgb(255, 255, 255);
@@ -222,8 +234,12 @@ body {
         border-radius: 0 2rem 2rem 0;
 
         justify-content: center;
+        align-items: center;
     }
 
+    .card-icon{
+        margin: auto;
+    }
 
     .day-of-week{
         text-align: center;
@@ -237,14 +253,15 @@ body {
     }
 
     .card-description{
-        display: flex;
         font-size: 2rem; font-weight: bold;
         width: 100%;
-        padding: 0.5rem;
+        display: flex;
+
+        justify-content: center;
     }
-    .card-description p{
-        align-items: center;
-        justify-content: center ;
+
+    .card-description{
+
     }
 
 }
