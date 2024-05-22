@@ -10,7 +10,7 @@
 *{
     box-sizing: border-box; 
     outline: 0;
-    overflow: hidden;
+    
 }
 
 body {
@@ -30,6 +30,7 @@ body {
     background-color:#fff;
     padding: 1rem;
     border-radius: 1rem;
+    overflow-y: hidden;
 }
 
 
@@ -259,9 +260,4 @@ body {
 
         justify-content: center;
     }
-
-    .card-description{
-
-    }
-
 }
