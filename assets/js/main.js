@@ -115,10 +115,12 @@ const cidade = new WeatherForecast('Guarulhos')
 async function start(){
     await cidade.geocoding();
     await cidade.getForecast();
+    hideSkeleton();
     printCurrentForecast();
     printWeekForecast();
 };
 start()
+
 
 function printCurrentForecast(){
 
@@ -209,4 +211,10 @@ function printWeekForecast(){
     })   
 
 
+}
+
+function hideSkeleton(){
+    console.log('aaaaaaaaaaaaa');
+    const skeleton = document.querySelector('.skeleton');
+    skeleton.style.display = 'none'
 }
