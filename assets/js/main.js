@@ -110,8 +110,6 @@ class WeatherForecast{
 
 const cidade = new WeatherForecast('Guarulhos')
 
-
-
 async function start(){
     await cidade.geocoding();
     await cidade.getForecast();
@@ -218,3 +216,4 @@ function hideSkeleton(){
     const skeleton = document.querySelector('.skeleton');
     skeleton.style.display = 'none'
 }
+
