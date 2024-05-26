@@ -10,7 +10,6 @@
 *{
     box-sizing: border-box; 
     outline: 0;
-    
 }
 
 body {
@@ -34,7 +33,6 @@ body {
 }
 
 .loader-circle {
-
     width: 100px; height: 100px;
     border-radius: 50%; border: 10px solid #fff;
     border-top-color: var(--primary-color-darker);
@@ -59,11 +57,9 @@ body {
     overflow-y: hidden;
 }
 
-
 .container h1 {
     text-align: center;
 }
-
 
 .current-title{
     padding: 1rem;

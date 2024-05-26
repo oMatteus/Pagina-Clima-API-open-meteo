@@ -73,6 +73,10 @@ class WeatherForecast{
                 text:'Garoa Intensa', 
                 icon:'assets/img/icones/wi-rain.svg',
                 bg:'assets/img/bg/ceu-limpo.jpg'},
+            63: {
+                text:'Garoa Intensa', 
+                icon:'assets/img/icones/wi-rain.svg',
+                bg:'assets/img/bg/ceu-limpo.jpg'},
             80 : {
                 text:'Leves pancadas de chuva', 
                 icon:'assets/img/icones/wi-showers.svg',
@@ -109,8 +113,6 @@ class WeatherForecast{
 };
 
 const cidade = new WeatherForecast('Guarulhos')
-
-
 
 async function start(){
     await cidade.geocoding();
