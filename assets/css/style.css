@@ -156,22 +156,40 @@ body {
 }
 
 .card-description{
-    margin: 0rem;
 
-    font-size: 2rem;
-    height: 7rem;
-    width: 10rem;
+    font-size: 2rem; font-weight: bolder;
+    min-height: 4rem;
+    min-width: 10rem;
 
-    align-items: center;
+    align-items: center; text-align: center;
 }
 
 .dayOfWeek{
     margin: 0;
 }
 
+@media (max-width: 368px){
+    
+    .container{
+        display: none;
+    }
+    
+    body{
+        display: flex; flex-direction: column;
+        justify-content: center;
+        align-items: center; 
+        height: 100vh;
+    }
 
+    body::before{
+        background-color: white;
+        content: 'Resolução não suportada';
+        border-radius: 5rem;
+        padding: 1rem
+    }  
+}
 
-@media (max-width: 440px){
+@media (min-width: 369px) and (max-width: 440px){
 
     .container{
         max-width: 95vw;
@@ -202,6 +220,7 @@ body {
 
     .day-of-week{
         padding-left: 1rem;
+        min-width: 2rem;
     }
 
     .max-min{
@@ -213,13 +232,13 @@ body {
     .day-of-week{
         text-align: center;
         margin: 0;
+        min-width: 8rem;
     }
     .card-description{
-
+        margin: 0;
         grid-column: span 3;
-
         font-size: 2.8rem; font-weight: bold;
-        width: 100%;
+        width: 100%; min-height: 5rem;
         padding: 0.5rem;
         text-align: center;
     }
@@ -265,21 +284,20 @@ body {
     }
 
     .day-of-week{
-        text-align: center;
+        text-align: center; 
         margin: 0;
     }
 
     .max-min{
-        padding-right: 2rem;
+        padding-right: 5rem;
         display: flex;
         flex-direction: column;
     }
 
     .card-description{
         font-size: 2rem; font-weight: bold;
-        width: 100%;
+        width: 100%; height: 100%;
         display: flex;
-
         justify-content: center;
     }
 }
