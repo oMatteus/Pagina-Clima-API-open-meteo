@@ -65,7 +65,7 @@ class WeatherForecast{
                 // console.log(cidade)
     
         }catch(e){
-            console.log(e + 'deu ruim');
+            console.log(e + 'Geocoding error');
         }; 
     };
 
@@ -74,7 +74,7 @@ class WeatherForecast{
     
         const json = await request.json();
     
-        // console.log(json);
+        console.log(json);
         this.previsao = json
     };
 
@@ -110,6 +110,10 @@ class WeatherForecast{
                 icon:'assets/img/icones/wi-raindrops.svg',
                 bg:'assets/img/bg/ceu-limpo.jpg'},
             55 : {
+                text:'Garoa Intensa', 
+                icon:'assets/img/icones/wi-rain.svg',
+                bg:'assets/img/bg/ceu-limpo.jpg'},
+            61: {
                 text:'Garoa Intensa', 
                 icon:'assets/img/icones/wi-rain.svg',
                 bg:'assets/img/bg/ceu-limpo.jpg'},
@@ -157,8 +161,7 @@ class WeatherForecast{
 async function start(local){
 
     const cidade = new WeatherForecast(local);
-    console.log(cidade);
-
+    
     await cidade.geocoding();
     await cidade.getForecast();
     
