@@ -1,7 +1,7 @@
 async function loadPage(){
     console.log('INICIO');
     try{
-        const res = await fetch('index.html');
+        const res = await fetch('clima.html');
 
         if(res.status !== 200){
             throw new Error('404 page not found');
