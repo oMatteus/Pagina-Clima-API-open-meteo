@@ -1,3 +1,43 @@
+async function loadPage(){
+    console.log('INICIO');
+    try{
+        const res = await fetch('index.html');
+
+        if(res.status !== 200){
+            throw new Error('404 page not found');
+        };
+        const html = await res.text();
+
+        loadResult(html)
+    }catch(e){
+        console.log(e);
+    };
+};
+
+function loadResult(res){
+    const result = document.querySelector('body');
+    result.innerHTML = res;
+}
+
+const form = document.querySelector(".form");
+
+form.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+
+    const input = document.querySelector('#cidade');
+
+    if(!input.value){
+        alert('Digite o nome de uma cidade');
+        return
+    }
+    console.log(input.value);
+    await loadPage();
+    await start(input.value)
+})
+
+
+
+
 class WeatherForecast{
     constructor(nome){
         this.nome = nome;
@@ -11,15 +51,15 @@ class WeatherForecast{
     async geocoding(){
 
         try{
-            const request = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${cidade.nome}&count=2&language=pt-br&format=json`);
+            const request = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${this.nome}&count=2&language=pt-br&format=json`);
     
             const json = await request.json();    
     
                 // console.log(json);
-                cidade.lat = json.results[0].latitude;
-                cidade.lng = json.results[0].longitude;
+                this.lat = json.results[0].latitude;
+                this.lng = json.results[0].longitude;
     
-                cidade.result = json.results[0].admin2 + ', ' + json.results[0].admin1 + ' - ' + json.results[0].country_code
+                this.result = json.results[0].admin2 + ', ' + json.results[0].admin1 + ' - ' + json.results[0].country_code
     
     
                 // console.log(cidade)
@@ -30,12 +70,12 @@ class WeatherForecast{
     };
 
     async getForecast(){
-        const request = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${cidade.lat}&longitude=${cidade.lng}&current=temperature_2m,apparent_temperature,precipitation,rain,showers,weather_code,cloud_cover&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,rain_sum,showers_sum,precipitation_hours,precipitation_probability_max&timezone=America%2FSao_Paulo`);
+        const request = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${this.lat}&longitude=${this.lng}&current=temperature_2m,apparent_temperature,precipitation,rain,showers,weather_code,cloud_cover&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,rain_sum,showers_sum,precipitation_hours,precipitation_probability_max&timezone=America%2FSao_Paulo`);
     
         const json = await request.json();
     
         // console.log(json);
-        cidade.previsao = json
+        this.previsao = json
     };
 
     weatherCodeVerify(id){
@@ -112,19 +152,24 @@ class WeatherForecast{
     };
 };
 
-const cidade = new WeatherForecast('Guarulhos')
 
-async function start(){
+
+async function start(local){
+
+    const cidade = new WeatherForecast(local);
+    console.log(cidade);
+
     await cidade.geocoding();
     await cidade.getForecast();
+    
+    printCurrentForecast(cidade);
+    printWeekForecast(cidade);
     hideSkeleton();
-    printCurrentForecast();
-    printWeekForecast();
 };
 start()
 
 
-function printCurrentForecast(){
+function printCurrentForecast(cidade){
 
     console.log(cidade);
 
@@ -157,13 +202,9 @@ function printCurrentForecast(){
 
 
     }
-
-
-
-
 };
 
-function printWeekForecast(){
+function printWeekForecast(cidade){
 
     cidade.previsao.daily.temperature_2m_max.forEach((tempMax, index) => {
         if(!index) return;
