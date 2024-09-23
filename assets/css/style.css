@@ -22,25 +22,34 @@ body {
 }
 
 .home{
-    width: 40rem; height: 10rem;
+    width: 40rem; height: 20rem;
 }
  
 form{
-    display: flex; flex-direction: column;
+    display: flex; flex-direction: row;
     justify-content: center; align-items: center;
     gap: 1rem;
+}
+
+.myLocation svg{         
+    fill: inherit;
+}
+
+.myLocation{
+    width: 6rem; height: 3rem;
 }
 
 .home input{
     width: 30rem; height: 3rem;
     padding: 0 1rem;
+    border-radius: 1rem;
     background-color: var(--primary-color);
     border: none; border-bottom: solid var(--primary-color-darker) 0.3rem;
     color: white;
 }
 
 .home input::placeholder{
-   color: rgba(255, 255, 255, 0.24);
+   color: rgb(255, 255, 255);
    text-align: center;
    font-weight: bolder;
 }
@@ -52,12 +61,35 @@ form{
     border-radius: 1rem;
     padding: 0.5rem 2rem;
     font-weight: bolder;
+    fill: #fff;
 }
 
 .home button:hover{
     background-color: white; color: var(--primary-color);
+    cursor: pointer;    
+    fill: var(--primary-color);  
+}
+
+
+#suggestions {
+    width: 30rem;
+    max-height: 150px;
+    overflow-y: auto;
+    padding: 0 1rem;
+
+    font-size: 1.5rem;
+    border: 1px solid black;
+}
+
+.suggestion-item {
+    padding: 2px;
     cursor: pointer;
 }
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}
+
 
 .skeleton{
     background-color: var(--primary-color);
@@ -149,7 +181,6 @@ form{
     display: flex;
     justify-content: space-between;
 }
-
 
 .card{
     background-color: #fff;

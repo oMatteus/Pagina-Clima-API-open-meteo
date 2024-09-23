@@ -1,3 +1,5 @@
+const ApiKey = API_KEY;
+
 async function loadPage(){
     console.log('INICIO');
     try{
@@ -21,22 +23,82 @@ function loadResult(res){
 
 const form = document.querySelector(".form");
 
-form.addEventListener('submit', async (e)=>{
-    e.preventDefault();
+const input = document.querySelector('#cidade');
+let inputNumber = 0;
 
-    const input = document.querySelector('#cidade');
+input.addEventListener('input',async(e)=>{
 
-    if(!input.value){
-        alert('Digite o nome de uma cidade');
-        return
-    }
-    console.log(input.value);
-    await loadPage();
-    await start(input.value)
+    console.log('input changed');
+    inputNumber++;
+
+    console.log(inputNumber);
+
+    if(inputNumber > 4){
+
+         const suggestion = await makeSuggestion(input.value);
+        showSuggestion(suggestion);
+
+    };      
 })
 
+async function makeSuggestion(inputValue){
 
+    try{
+        const request = await fetch(`https://api.weatherapi.com/v1/search.json?key=${ApiKey}&q=${inputValue}`);
 
+        const json = await request.json();    
+
+        // console.log(json);
+
+        return json;
+
+        // console.log(cidade)
+
+    }catch(e){
+        console.log(e + 'Geocoding error');
+    }; 
+
+}
+
+async function showSuggestion(itens){
+    
+    console.log(itens);
+
+    const suggestionsDiv = document.getElementById('suggestions');
+    suggestionsDiv.innerHTML = '';
+
+    itens.forEach(suggestion => {
+
+        const div = document.createElement('div');
+        div.textContent = `${suggestion.name}, ${suggestion.region} - ${suggestion.country}`;
+
+        div.classList.add('suggestion-item');
+
+        div.addEventListener('click', () => {
+            input.value = suggestion.name;
+            suggestionsDiv.innerHTML = '';
+        });
+        suggestionsDiv.appendChild(div);
+    });
+}
+
+async function getWeather(lat,lon){
+   
+    console.log(input.value);
+
+    const request = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${ApiKey}&q=${lat},${lon}&days=7&aqi=no&alerts=no`);
+
+    const json = await request.json();  
+    
+    console.log(json);
+
+    // console.log(json);
+
+    // await loadPage();
+    // await start(input.value)
+
+    // return json;
+};
 
 class WeatherForecast{
     constructor(nome){
@@ -46,27 +108,6 @@ class WeatherForecast{
         this.lng = '';
         this.previsao = '';
         this.unit='°';
-    };
-
-    async geocoding(){
-
-        try{
-            const request = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${this.nome}&count=2&language=pt-br&format=json`);
-    
-            const json = await request.json();    
-    
-                // console.log(json);
-                this.lat = json.results[0].latitude;
-                this.lng = json.results[0].longitude;
-    
-                this.result = json.results[0].admin2 + ', ' + json.results[0].admin1 + ' - ' + json.results[0].country_code
-    
-    
-                // console.log(cidade)
-    
-        }catch(e){
-            console.log(e + 'Geocoding error');
-        }; 
     };
 
     async getForecast(){
@@ -155,8 +196,6 @@ class WeatherForecast{
         return weatherCode[id];
     };
 };
-
-
 
 async function start(local){
 
@@ -260,7 +299,18 @@ function printWeekForecast(cidade){
 }
 
 function hideSkeleton(){
-    console.log('aaaaaaaaaaaaa');
     const skeleton = document.querySelector('.skeleton');
     skeleton.style.display = 'none'
 }
+
+function getGeolocation(){
+
+    if(navigator.geolocation.getCurrentPosition((position)=>{
+        console.log('Position: ', {position});
+
+    }));
+
+
+};
+
+// getGeolocation();
