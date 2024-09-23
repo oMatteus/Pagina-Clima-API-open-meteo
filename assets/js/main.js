@@ -1,4 +1,4 @@
-const ApiKey = API_KEY;
+const ApiKey = process.env.API_KEY;
 
 async function loadPage(){
     console.log('INICIO');
