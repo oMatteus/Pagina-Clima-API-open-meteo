@@ -10,10 +10,15 @@
 
     <div class="container home">
 
-        <form class="form">
-            <label for="cidade"></label>
-            <input type="text" name="cidade" id="cidade" placeholder="Digite o nome do local" autofocus="'true" autocomplete="off">
+        <div class="search">
             
+            <div>
+                <label for="cidade"></label>
+                <input type="text" name="cidade" id="cidade" placeholder="Digite o nome do local" autofocus="'true" autocomplete="off">
+                <div id="suggestions"></div>
+            </div>
+            
+        
             <button class="myLocation" >
                 <?xml version="1.0" encoding="iso-8859-1"?>
                 <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
@@ -30,11 +35,14 @@
                 </svg>
             </button>
             <!-- <button class="button"> Ver previsão </button> -->
-        </form>
+        </div>
 
-        <div id="suggestions"></div>
+        
         
     </div>
+
+
+
 
     <script src="assets/js/main.js"></script>
 </body>
