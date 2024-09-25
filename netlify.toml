@@ -1,0 +1,3 @@
+[build]
+  publish = "."    
+  functions = "netlify/functions"  # Indica a pasta onde estão as funções serverless

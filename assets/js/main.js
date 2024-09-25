@@ -123,13 +123,23 @@ class WeatherForecast{
     };
 
     async getForecast(){
-        const request = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${ApiKey}&q=${this.lat},${this.lon}&days=7&aqi=no&alerts=no&lang=pt`);
+        // const request = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${ApiKey}&q=${this.lat},${this.lon}&days=7&aqi=no&alerts=no&lang=pt`);
 
-        const json = await request.json();  
+        // const json = await request.json();  
         
-        console.log(json);
+        // console.log(json);
     
-        this.previsao = json
+        // this.previsao = json
+
+        fetch('/.netlify/functions/getWeatherForecast')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na requisição da função serverless');
+                }
+                this.previsao = response;
+            })
+
+        console.log(this.previsao);
     };
 };
 
