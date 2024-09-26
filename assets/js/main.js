@@ -1,4 +1,4 @@
-const ApiKey = '';
+const ApiKey = '14d81a94fed64d5a93b141527242209';
 
 const form = document.querySelector(".form");
 const myLocation = document.querySelector(".myLocation");
@@ -27,16 +27,16 @@ async function start(lat,lon){
     
     await cidade.getForecast();
     
-    await loadPage();
+    await loadPage('clima.html');
     printCurrentForecast(cidade);
     printWeekForecast(cidade);
     hideSkeleton();
 };
 
-async function loadPage(){
+async function loadPage(page){
     console.log('INICIO');
     try{
-        const res = await fetch('clima.html');
+        const res = await fetch(page);
 
         if(res.status !== 200){
             throw new Error('404 page not found');
@@ -50,7 +50,7 @@ async function loadPage(){
 };
 
 function loadResult(res){
-    const result = document.querySelector('body');
+    const result = document.querySelector('.page');
     result.innerHTML = res;
 }
 
@@ -123,23 +123,13 @@ class WeatherForecast{
     };
 
     async getForecast(){
-        // const request = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${ApiKey}&q=${this.lat},${this.lon}&days=7&aqi=no&alerts=no&lang=pt`);
+        const request = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${ApiKey}&q=${this.lat},${this.lon}&days=7&aqi=no&alerts=no&lang=pt`);
 
-        // const json = await request.json();  
+        const json = await request.json();  
         
-        // console.log(json);
+        console.log(json);
     
-        // this.previsao = json
-
-        fetch('/.netlify/functions/getWeatherForecast')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erro na requisição da função serverless');
-                }
-                this.previsao = response;
-            })
-
-        console.log(this.previsao);
+        this.previsao = json
     };
 };
 
@@ -284,8 +274,6 @@ function hideSkeleton(){
     skeleton.style.display = 'none'
 }
 
-
-
 function getGeolocation(){
 
     navigator.geolocation.getCurrentPosition((position)=>{
@@ -300,7 +288,10 @@ function getGeolocation(){
 
 };
 
-myLocation.addEventListener('click', async(e)=>{
+myLocation.addEventListener('click', async()=>{
     getGeolocation()
-})
+});
+
+
+
 
