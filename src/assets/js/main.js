@@ -1,7 +1,6 @@
 import '../css/style.css';
 
 const ApiKey = process.env.API_KEY;
-console.log(ApiKey);
 
 const form = document.querySelector(".form");
 const myLocation = document.querySelector(".myLocation");
