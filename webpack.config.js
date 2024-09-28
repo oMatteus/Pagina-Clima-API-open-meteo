@@ -6,7 +6,7 @@ module.exports = {
     mode: 'development', //modo desenvolvedor para manter a estrutura original
     entry: './src/assets/js/main.js', //arquivo de entrada
     output: {
-        path: path.resolve(__dirname, 'public', 'assets', 'js'), //Caminho de saída usando o resolve para que a formatação do caminho fique de acordo com sistema operacional (__dirname é a pasta atual)
+        path: path.resolve(__dirname, 'docs', 'assets', 'js'), //Caminho de saída usando o resolve para que a formatação do caminho fique de acordo com sistema operacional (__dirname é a pasta atual)
         filename: 'bundle.js' //nome do arquivo de Saida
     },
     plugins: [
