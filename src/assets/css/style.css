@@ -11,12 +11,29 @@
     outline: 0;
 }
 
-#body {
+body {
     margin: 0;
     padding: 0;
     background-color: var(--primary-color);
     font-family: sans-serif;
     font-size: 2.5rem;
+    overflow: hidden;
+}
+
+p{
+    margin: 0;
+}
+
+#bg-img{
+    object-fit: cover; ;
+    
+    height: 100vh; width: 110vw;
+
+    position: absolute;
+    filter: blur(10px); scale: 1.1;
+
+    z-index: -2;
+    top: 0; bottom: 0; right: 0; left: 0;
 }
 
 .search{
@@ -30,7 +47,6 @@
     /* position: relative; */
 }
 
-
 .myLocation svg{         
     fill: inherit;
 }
@@ -40,7 +56,8 @@
 }
 
 .home input{
-    width: 30rem; height: 3rem;
+    width: 30rem; height: 3.3rem;
+    font-size: 1.6rem;
     padding: 0 1rem;
     border-radius: 1rem;
     background-color: var(--primary-color);
@@ -55,7 +72,7 @@
 }
 
 .home button{
-    height: 3rem; width: 4rem;
+    height: 3.3rem; width: 4rem;
     background-color: var(--primary-color); color: white;
     border-radius: 1rem;
     font-weight: bolder;
@@ -70,6 +87,24 @@
     background-color: white; color: var(--primary-color);
     cursor: pointer;    
     fill: var(--primary-color);  
+}
+
+.container{
+    max-width: 85rem;
+    margin: 3rem auto;
+    background-color:#fff;
+    padding: 1rem;
+    border-radius: 1rem;
+    overflow-y: hidden;
+    filter: none;
+
+ 
+}
+
+.container h1 {
+    text-align: center;
+    margin-top: 0; margin-bottom: 0;
+    border-bottom: 2px solid var(--primary-color);
 }
 
 #suggestions {
@@ -93,10 +128,11 @@
 
 .skeleton{
     background-color: var(--primary-color);
-    position: fixed;
-
+    position: absolute;
     height: 100%; width: 100%;
-    top: 0; overflow-x: hidden;
+
+    top: 0; bottom: 0; left: 0; right: 0;
+    overflow-x: hidden;
 
     display: flex;
     justify-content: center; align-items: center;
@@ -117,19 +153,6 @@
       transform: rotate(360deg);
     }
   }
-
-.container{
-    max-width: 85rem;
-    margin: 5rem auto;
-    background-color:#fff;
-    padding: 1rem;
-    border-radius: 1rem;
-    overflow-y: hidden;
-}
-
-.container h1 {
-    text-align: center;
-}
 
 .current-title{
     padding: 1rem;
@@ -178,16 +201,14 @@
 }
 
 .forecast{
-    display: flex;
+    display: flex; 
     justify-content: space-between;
 }
 
 .card{
     background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    
 
+    display: flex; flex-direction: column;
     
     align-items: center;
 
@@ -198,10 +219,27 @@
 
     border-radius: 0 0 2rem 2rem;
     width: 13rem;
+
+    justify-content: space-between;
 }
 
 .card-icon{
     height: 10rem;
+}
+
+.card-description{
+
+    font-size: 2rem; font-weight: bolder;
+    min-height: 4rem; min-width: 10rem;
+
+    align-items: center; text-align: center;
+
+    padding: 2px 2px;
+}
+
+
+.max-min p{
+    height: 4rem;
 }
 
 .max-min p{
@@ -222,15 +260,6 @@
 .max-line p, .min-line p{
     width: 5rem;
     text-align: center;
-}
-
-.card-description{
-
-    font-size: 2rem; font-weight: bolder;
-    min-height: 4rem;
-    min-width: 10rem;
-
-    align-items: center; text-align: center;
 }
 
 .dayOfWeek{
@@ -260,7 +289,7 @@
     }  
 }
 
-@media (min-width: 369px) and (max-width: 440px){
+@media (min-width: 369px) and (max-width: 504px){
 
     .container{
         max-width: 95vw;
@@ -317,8 +346,7 @@
 
 }
 
-
-@media (min-width: 441px) and (max-width: 810px){
+@media (min-width: 505px) and (max-width: 900px){
 
     .container{
         max-width: 95vw;
@@ -367,7 +395,6 @@
 
     .card-description{
         font-size: 2rem; font-weight: bold;
-        width: 100%; height: 100%;
         display: flex;
         justify-content: center;
     }

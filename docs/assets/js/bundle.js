@@ -33,12 +33,29 @@ ___CSS_LOADER_EXPORT___.push([module.id, `:root{
     outline: 0;
 }
 
-#body {
+body {
     margin: 0;
     padding: 0;
     background-color: var(--primary-color);
     font-family: sans-serif;
     font-size: 2.5rem;
+    overflow: hidden;
+}
+
+p{
+    margin: 0;
+}
+
+#bg-img{
+    object-fit: cover; ;
+    
+    height: 100vh; width: 110vw;
+
+    position: absolute;
+    filter: blur(10px); scale: 1.1;
+
+    z-index: -2;
+    top: 0; bottom: 0; right: 0; left: 0;
 }
 
 .search{
@@ -52,7 +69,6 @@ ___CSS_LOADER_EXPORT___.push([module.id, `:root{
     /* position: relative; */
 }
 
-
 .myLocation svg{         
     fill: inherit;
 }
@@ -62,7 +78,8 @@ ___CSS_LOADER_EXPORT___.push([module.id, `:root{
 }
 
 .home input{
-    width: 30rem; height: 3rem;
+    width: 30rem; height: 3.3rem;
+    font-size: 1.6rem;
     padding: 0 1rem;
     border-radius: 1rem;
     background-color: var(--primary-color);
@@ -77,7 +94,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `:root{
 }
 
 .home button{
-    height: 3rem; width: 4rem;
+    height: 3.3rem; width: 4rem;
     background-color: var(--primary-color); color: white;
     border-radius: 1rem;
     font-weight: bolder;
@@ -92,6 +109,24 @@ ___CSS_LOADER_EXPORT___.push([module.id, `:root{
     background-color: white; color: var(--primary-color);
     cursor: pointer;    
     fill: var(--primary-color);  
+}
+
+.container{
+    max-width: 85rem;
+    margin: 3rem auto;
+    background-color:#fff;
+    padding: 1rem;
+    border-radius: 1rem;
+    overflow-y: hidden;
+    filter: none;
+
+ 
+}
+
+.container h1 {
+    text-align: center;
+    margin-top: 0; margin-bottom: 0;
+    border-bottom: 2px solid var(--primary-color);
 }
 
 #suggestions {
@@ -115,10 +150,11 @@ ___CSS_LOADER_EXPORT___.push([module.id, `:root{
 
 .skeleton{
     background-color: var(--primary-color);
-    position: fixed;
-
+    position: absolute;
     height: 100%; width: 100%;
-    top: 0; overflow-x: hidden;
+
+    top: 0; bottom: 0; left: 0; right: 0;
+    overflow-x: hidden;
 
     display: flex;
     justify-content: center; align-items: center;
@@ -139,19 +175,6 @@ ___CSS_LOADER_EXPORT___.push([module.id, `:root{
       transform: rotate(360deg);
     }
   }
-
-.container{
-    max-width: 85rem;
-    margin: 5rem auto;
-    background-color:#fff;
-    padding: 1rem;
-    border-radius: 1rem;
-    overflow-y: hidden;
-}
-
-.container h1 {
-    text-align: center;
-}
 
 .current-title{
     padding: 1rem;
@@ -200,16 +223,14 @@ ___CSS_LOADER_EXPORT___.push([module.id, `:root{
 }
 
 .forecast{
-    display: flex;
+    display: flex; 
     justify-content: space-between;
 }
 
 .card{
     background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    
 
+    display: flex; flex-direction: column;
     
     align-items: center;
 
@@ -220,10 +241,27 @@ ___CSS_LOADER_EXPORT___.push([module.id, `:root{
 
     border-radius: 0 0 2rem 2rem;
     width: 13rem;
+
+    justify-content: space-between;
 }
 
 .card-icon{
     height: 10rem;
+}
+
+.card-description{
+
+    font-size: 2rem; font-weight: bolder;
+    min-height: 4rem; min-width: 10rem;
+
+    align-items: center; text-align: center;
+
+    padding: 2px 2px;
+}
+
+
+.max-min p{
+    height: 4rem;
 }
 
 .max-min p{
@@ -244,15 +282,6 @@ ___CSS_LOADER_EXPORT___.push([module.id, `:root{
 .max-line p, .min-line p{
     width: 5rem;
     text-align: center;
-}
-
-.card-description{
-
-    font-size: 2rem; font-weight: bolder;
-    min-height: 4rem;
-    min-width: 10rem;
-
-    align-items: center; text-align: center;
 }
 
 .dayOfWeek{
@@ -282,7 +311,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `:root{
     }  
 }
 
-@media (min-width: 369px) and (max-width: 440px){
+@media (min-width: 369px) and (max-width: 504px){
 
     .container{
         max-width: 95vw;
@@ -339,8 +368,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `:root{
 
 }
 
-
-@media (min-width: 441px) and (max-width: 810px){
+@media (min-width: 505px) and (max-width: 900px){
 
     .container{
         max-width: 95vw;
@@ -389,11 +417,10 @@ ___CSS_LOADER_EXPORT___.push([module.id, `:root{
 
     .card-description{
         font-size: 2rem; font-weight: bold;
-        width: 100%; height: 100%;
         display: flex;
         justify-content: center;
     }
-}`, "",{"version":3,"sources":["webpack://./src/assets/css/style.css"],"names":[],"mappings":"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","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');\r\n\r\n:root{\r\n    --primary-color: rgb(17, 86, 102);\r\n    --primary-color-darker: rgb(9, 48, 56);\r\n    font-size: 62.5%;\r\n}\r\n\r\n*{\r\n    box-sizing: border-box; \r\n    outline: 0;\r\n}\r\n\r\n#body {\r\n    margin: 0;\r\n    padding: 0;\r\n    background-color: var(--primary-color);\r\n    font-family: sans-serif;\r\n    font-size: 2.5rem;\r\n}\r\n\r\n.search{\r\n    display: flex; flex-direction: row;\r\n    justify-content: center; \r\n    gap: 1rem;\r\n}\r\n\r\n.search div{\r\n    display: flex; flex-direction: column;\r\n    /* position: relative; */\r\n}\r\n\r\n\r\n.myLocation svg{         \r\n    fill: inherit;\r\n}\r\n\r\n.myLocation{\r\n    width: 6rem; height: 3rem;\r\n}\r\n\r\n.home input{\r\n    width: 30rem; height: 3rem;\r\n    padding: 0 1rem;\r\n    border-radius: 1rem;\r\n    background-color: var(--primary-color);\r\n    border: none; border-bottom: solid var(--primary-color-darker) 0.3rem;\r\n    color: white;\r\n}\r\n\r\n.home input::placeholder{\r\n   color: rgb(255, 255, 255);\r\n   text-align: center;\r\n   font-weight: bolder;\r\n}\r\n\r\n.home button{\r\n    height: 3rem; width: 4rem;\r\n    background-color: var(--primary-color); color: white;\r\n    border-radius: 1rem;\r\n    font-weight: bolder;\r\n    fill: #fff;\r\n\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.home button:hover{\r\n    background-color: white; color: var(--primary-color);\r\n    cursor: pointer;    \r\n    fill: var(--primary-color);  \r\n}\r\n\r\n#suggestions {\r\n    width: 30rem;\r\n    max-height: 130px; max-width: 94%;\r\n    overflow-y: auto;\r\n    padding: 0 1rem; margin-top: 3rem;\r\n    background-color: #fff;\r\n    font-size: 1.5rem;\r\n    position: fixed; z-index: 10;\r\n}\r\n\r\n.suggestion-item {\r\n    padding: 2px;\r\n    cursor: pointer;\r\n}\r\n\r\n.suggestion-item:hover {\r\n    background-color: #f0f0f0;\r\n}\r\n\r\n.skeleton{\r\n    background-color: var(--primary-color);\r\n    position: fixed;\r\n\r\n    height: 100%; width: 100%;\r\n    top: 0; overflow-x: hidden;\r\n\r\n    display: flex;\r\n    justify-content: center; align-items: center;\r\n}\r\n\r\n.loader-circle {\r\n    width: 100px; height: 100px;\r\n    border-radius: 50%; border: 10px solid #fff;\r\n    border-top-color: var(--primary-color-darker);\r\n    animation: loader-circle 1s linear infinite;\r\n  }\r\n  \r\n  @keyframes loader-circle {\r\n    0% {\r\n      transform: rotate(0);\r\n    }\r\n    100% {\r\n      transform: rotate(360deg);\r\n    }\r\n  }\r\n\r\n.container{\r\n    max-width: 85rem;\r\n    margin: 5rem auto;\r\n    background-color:#fff;\r\n    padding: 1rem;\r\n    border-radius: 1rem;\r\n    overflow-y: hidden;\r\n}\r\n\r\n.container h1 {\r\n    text-align: center;\r\n}\r\n\r\n.current-title{\r\n    padding: 1rem;\r\n    margin: 0;\r\n    text-align: center;\r\n}\r\n\r\n.current-content{\r\n    justify-content: center;\r\n}\r\n\r\n.current-temperature{\r\n    font-size: 7.6rem;\r\n    height: 10rem;\r\n    margin: 0;\r\n    justify-content: center;\r\n}\r\n\r\n.current-info{\r\n    display: flex;\r\n    flex-direction: column; \r\n}\r\n\r\n.icone-grande{\r\n    height: 10rem;\r\n    object-fit: contain;\r\n    \r\n}\r\n\r\n.current-temperature-text{\r\n    background-color: #fff;\r\n    margin: 0;\r\n    text-align: center;\r\n    font-size: 3.5rem;\r\n    font-weight: bold;\r\n}\r\n\r\n.current-content-temp{\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n}\r\n\r\n.week{\r\n    margin-top: 2rem;\r\n}\r\n\r\n.forecast{\r\n    display: flex;\r\n    justify-content: space-between;\r\n}\r\n\r\n.card{\r\n    background-color: #fff;\r\n    display: flex;\r\n    flex-direction: column;\r\n    \r\n\r\n    \r\n    align-items: center;\r\n\r\n    background: rgb(255, 255, 255);\r\n    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgb(80, 80, 80) 0%, rgba(255,255,255,1) 100%);\r\n\r\n    overflow-wrap: break-word;\r\n\r\n    border-radius: 0 0 2rem 2rem;\r\n    width: 13rem;\r\n}\r\n\r\n.card-icon{\r\n    height: 10rem;\r\n}\r\n\r\n.max-min p{\r\n    margin: 1rem 0rem;\r\n    justify-content: center;\r\n}\r\n\r\n.max-icon, .min-icon{\r\n    height: 5rem;\r\n    color: #fff;\r\n}\r\n\r\n.max-line, .min-line{\r\n    display: flex;\r\n    color: #fff;\r\n}\r\n\r\n.max-line p, .min-line p{\r\n    width: 5rem;\r\n    text-align: center;\r\n}\r\n\r\n.card-description{\r\n\r\n    font-size: 2rem; font-weight: bolder;\r\n    min-height: 4rem;\r\n    min-width: 10rem;\r\n\r\n    align-items: center; text-align: center;\r\n}\r\n\r\n.dayOfWeek{\r\n    margin: 0;\r\n}\r\n\r\n@media (max-width: 368px){\r\n    \r\n    .container{\r\n        display: none;\r\n    }\r\n    \r\n    body{\r\n        display: flex; flex-direction: column;\r\n        justify-content: center;\r\n        align-items: center; \r\n        height: 100vh;\r\n    }\r\n\r\n    body::before{\r\n        text-align: center;\r\n        background-color: white;\r\n        content: 'Resolução não suportada';\r\n        border-radius: 5rem;\r\n        padding: 2rem;\r\n        min-width: 15rem;\r\n    }  \r\n}\r\n\r\n@media (min-width: 369px) and (max-width: 440px){\r\n\r\n    .container{\r\n        max-width: 95vw;\r\n    }\r\n\r\n    .forecast{\r\n        flex-direction: column;\r\n        gap: 2rem;\r\n    }\r\n\r\n    .card{\r\n        width: initial;\r\n        gap: 1rem;\r\n\r\n        display: grid;\r\n\r\n        grid-template-columns: repeat(3, 1fr);\r\n\r\n        background: rgb(255, 255, 255);\r\n        background: linear-gradient(270deg, rgba(2,0,36,1) 0%, rgb(80, 80, 80) 0%, rgba(255,255,255,1) 100%);\r\n\r\n        border-radius: 0 2rem 2rem 0;\r\n    }\r\n\r\n    .card-icon{\r\n        margin: auto;\r\n    }\r\n\r\n    .day-of-week{\r\n        padding-left: 1rem;\r\n        min-width: 2rem;\r\n    }\r\n\r\n    .max-min{\r\n        justify-content: center;\r\n        grid-area: 1/*linha inicial*/ / -1/*linha final*/ / 2/*coluna inicial*/ / 3/*coluna final*/;\r\n    }\r\n\r\n\r\n    .day-of-week{\r\n        text-align: center;\r\n        margin: 0;\r\n        min-width: 8rem;\r\n    }\r\n    .card-description{\r\n        margin: 0;\r\n        grid-column: span 3;\r\n        font-size: 2.8rem; font-weight: bold;\r\n        width: 100%; min-height: 5rem;\r\n        padding: 0.5rem;\r\n        text-align: center;\r\n    }\r\n    \r\n\r\n}\r\n\r\n\r\n@media (min-width: 441px) and (max-width: 810px){\r\n\r\n    .container{\r\n        max-width: 95vw;\r\n    }\r\n\r\n    .forecast{\r\n\r\n        display: grid;\r\n        grid-template-columns: 1fr;\r\n\r\n        gap: 2rem;\r\n    }\r\n\r\n    .card{\r\n        width: initial;\r\n        gap: 1rem;\r\n\r\n        display: grid;\r\n\r\n        grid-template-columns: 1fr 1fr 1fr 1fr;\r\n        /* grid-template-columns: 7rem 10rem 2fr 1fr; */\r\n\r\n        background: rgb(255, 255, 255);\r\n        background: linear-gradient(270deg, rgba(2,0,36,1) 0%, rgb(80, 80, 80) 0%, rgba(255,255,255,1) 100%);\r\n\r\n        border-radius: 0 2rem 2rem 0;\r\n\r\n        justify-content: center;\r\n        align-items: center;\r\n    }\r\n\r\n    .card-icon{\r\n        margin: auto;\r\n    }\r\n\r\n    .day-of-week{\r\n        text-align: center; \r\n        margin: 0;\r\n    }\r\n\r\n    .max-min{\r\n        padding-right: 5rem;\r\n        display: flex;\r\n        flex-direction: column;\r\n    }\r\n\r\n    .card-description{\r\n        font-size: 2rem; font-weight: bold;\r\n        width: 100%; height: 100%;\r\n        display: flex;\r\n        justify-content: center;\r\n    }\r\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/assets/css/style.css"],"names":[],"mappings":"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","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');\r\n\r\n:root{\r\n    --primary-color: rgb(17, 86, 102);\r\n    --primary-color-darker: rgb(9, 48, 56);\r\n    font-size: 62.5%;\r\n}\r\n\r\n*{\r\n    box-sizing: border-box; \r\n    outline: 0;\r\n}\r\n\r\nbody {\r\n    margin: 0;\r\n    padding: 0;\r\n    background-color: var(--primary-color);\r\n    font-family: sans-serif;\r\n    font-size: 2.5rem;\r\n    overflow: hidden;\r\n}\r\n\r\np{\r\n    margin: 0;\r\n}\r\n\r\n#bg-img{\r\n    object-fit: cover; ;\r\n    \r\n    height: 100vh; width: 110vw;\r\n\r\n    position: absolute;\r\n    filter: blur(10px); scale: 1.1;\r\n\r\n    z-index: -2;\r\n    top: 0; bottom: 0; right: 0; left: 0;\r\n}\r\n\r\n.search{\r\n    display: flex; flex-direction: row;\r\n    justify-content: center; \r\n    gap: 1rem;\r\n}\r\n\r\n.search div{\r\n    display: flex; flex-direction: column;\r\n    /* position: relative; */\r\n}\r\n\r\n.myLocation svg{         \r\n    fill: inherit;\r\n}\r\n\r\n.myLocation{\r\n    width: 6rem; height: 3rem;\r\n}\r\n\r\n.home input{\r\n    width: 30rem; height: 3.3rem;\r\n    font-size: 1.6rem;\r\n    padding: 0 1rem;\r\n    border-radius: 1rem;\r\n    background-color: var(--primary-color);\r\n    border: none; border-bottom: solid var(--primary-color-darker) 0.3rem;\r\n    color: white;\r\n}\r\n\r\n.home input::placeholder{\r\n   color: rgb(255, 255, 255);\r\n   text-align: center;\r\n   font-weight: bolder;\r\n}\r\n\r\n.home button{\r\n    height: 3.3rem; width: 4rem;\r\n    background-color: var(--primary-color); color: white;\r\n    border-radius: 1rem;\r\n    font-weight: bolder;\r\n    fill: #fff;\r\n\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.home button:hover{\r\n    background-color: white; color: var(--primary-color);\r\n    cursor: pointer;    \r\n    fill: var(--primary-color);  \r\n}\r\n\r\n.container{\r\n    max-width: 85rem;\r\n    margin: 3rem auto;\r\n    background-color:#fff;\r\n    padding: 1rem;\r\n    border-radius: 1rem;\r\n    overflow-y: hidden;\r\n    filter: none;\r\n\r\n \r\n}\r\n\r\n.container h1 {\r\n    text-align: center;\r\n    margin-top: 0; margin-bottom: 0;\r\n    border-bottom: 2px solid var(--primary-color);\r\n}\r\n\r\n#suggestions {\r\n    width: 30rem;\r\n    max-height: 130px; max-width: 94%;\r\n    overflow-y: auto;\r\n    padding: 0 1rem; margin-top: 3rem;\r\n    background-color: #fff;\r\n    font-size: 1.5rem;\r\n    position: fixed; z-index: 10;\r\n}\r\n\r\n.suggestion-item {\r\n    padding: 2px;\r\n    cursor: pointer;\r\n}\r\n\r\n.suggestion-item:hover {\r\n    background-color: #f0f0f0;\r\n}\r\n\r\n.skeleton{\r\n    background-color: var(--primary-color);\r\n    position: absolute;\r\n    height: 100%; width: 100%;\r\n\r\n    top: 0; bottom: 0; left: 0; right: 0;\r\n    overflow-x: hidden;\r\n\r\n    display: flex;\r\n    justify-content: center; align-items: center;\r\n}\r\n\r\n.loader-circle {\r\n    width: 100px; height: 100px;\r\n    border-radius: 50%; border: 10px solid #fff;\r\n    border-top-color: var(--primary-color-darker);\r\n    animation: loader-circle 1s linear infinite;\r\n  }\r\n  \r\n  @keyframes loader-circle {\r\n    0% {\r\n      transform: rotate(0);\r\n    }\r\n    100% {\r\n      transform: rotate(360deg);\r\n    }\r\n  }\r\n\r\n.current-title{\r\n    padding: 1rem;\r\n    margin: 0;\r\n    text-align: center;\r\n}\r\n\r\n.current-content{\r\n    justify-content: center;\r\n}\r\n\r\n.current-temperature{\r\n    font-size: 7.6rem;\r\n    height: 10rem;\r\n    margin: 0;\r\n    justify-content: center;\r\n}\r\n\r\n.current-info{\r\n    display: flex;\r\n    flex-direction: column; \r\n}\r\n\r\n.icone-grande{\r\n    height: 10rem;\r\n    object-fit: contain;\r\n    \r\n}\r\n\r\n.current-temperature-text{\r\n    background-color: #fff;\r\n    margin: 0;\r\n    text-align: center;\r\n    font-size: 3.5rem;\r\n    font-weight: bold;\r\n}\r\n\r\n.current-content-temp{\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n}\r\n\r\n.week{\r\n    margin-top: 2rem;\r\n}\r\n\r\n.forecast{\r\n    display: flex; \r\n    justify-content: space-between;\r\n}\r\n\r\n.card{\r\n    background-color: #fff;\r\n\r\n    display: flex; flex-direction: column;\r\n    \r\n    align-items: center;\r\n\r\n    background: rgb(255, 255, 255);\r\n    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgb(80, 80, 80) 0%, rgba(255,255,255,1) 100%);\r\n\r\n    overflow-wrap: break-word;\r\n\r\n    border-radius: 0 0 2rem 2rem;\r\n    width: 13rem;\r\n\r\n    justify-content: space-between;\r\n}\r\n\r\n.card-icon{\r\n    height: 10rem;\r\n}\r\n\r\n.card-description{\r\n\r\n    font-size: 2rem; font-weight: bolder;\r\n    min-height: 4rem; min-width: 10rem;\r\n\r\n    align-items: center; text-align: center;\r\n\r\n    padding: 2px 2px;\r\n}\r\n\r\n\r\n.max-min p{\r\n    height: 4rem;\r\n}\r\n\r\n.max-min p{\r\n    margin: 1rem 0rem;\r\n    justify-content: center;\r\n}\r\n\r\n.max-icon, .min-icon{\r\n    height: 5rem;\r\n    color: #fff;\r\n}\r\n\r\n.max-line, .min-line{\r\n    display: flex;\r\n    color: #fff;\r\n}\r\n\r\n.max-line p, .min-line p{\r\n    width: 5rem;\r\n    text-align: center;\r\n}\r\n\r\n.dayOfWeek{\r\n    margin: 0;\r\n}\r\n\r\n@media (max-width: 368px){\r\n    \r\n    .container{\r\n        display: none;\r\n    }\r\n    \r\n    body{\r\n        display: flex; flex-direction: column;\r\n        justify-content: center;\r\n        align-items: center; \r\n        height: 100vh;\r\n    }\r\n\r\n    body::before{\r\n        text-align: center;\r\n        background-color: white;\r\n        content: 'Resolução não suportada';\r\n        border-radius: 5rem;\r\n        padding: 2rem;\r\n        min-width: 15rem;\r\n    }  \r\n}\r\n\r\n@media (min-width: 369px) and (max-width: 504px){\r\n\r\n    .container{\r\n        max-width: 95vw;\r\n    }\r\n\r\n    .forecast{\r\n        flex-direction: column;\r\n        gap: 2rem;\r\n    }\r\n\r\n    .card{\r\n        width: initial;\r\n        gap: 1rem;\r\n\r\n        display: grid;\r\n\r\n        grid-template-columns: repeat(3, 1fr);\r\n\r\n        background: rgb(255, 255, 255);\r\n        background: linear-gradient(270deg, rgba(2,0,36,1) 0%, rgb(80, 80, 80) 0%, rgba(255,255,255,1) 100%);\r\n\r\n        border-radius: 0 2rem 2rem 0;\r\n    }\r\n\r\n    .card-icon{\r\n        margin: auto;\r\n    }\r\n\r\n    .day-of-week{\r\n        padding-left: 1rem;\r\n        min-width: 2rem;\r\n    }\r\n\r\n    .max-min{\r\n        justify-content: center;\r\n        grid-area: 1/*linha inicial*/ / -1/*linha final*/ / 2/*coluna inicial*/ / 3/*coluna final*/;\r\n    }\r\n\r\n\r\n    .day-of-week{\r\n        text-align: center;\r\n        margin: 0;\r\n        min-width: 8rem;\r\n    }\r\n    .card-description{\r\n        margin: 0;\r\n        grid-column: span 3;\r\n        font-size: 2.8rem; font-weight: bold;\r\n        width: 100%; min-height: 5rem;\r\n        padding: 0.5rem;\r\n        text-align: center;\r\n    }\r\n    \r\n\r\n}\r\n\r\n@media (min-width: 505px) and (max-width: 900px){\r\n\r\n    .container{\r\n        max-width: 95vw;\r\n    }\r\n\r\n    .forecast{\r\n\r\n        display: grid;\r\n        grid-template-columns: 1fr;\r\n\r\n        gap: 2rem;\r\n    }\r\n\r\n    .card{\r\n        width: initial;\r\n        gap: 1rem;\r\n\r\n        display: grid;\r\n\r\n        grid-template-columns: 1fr 1fr 1fr 1fr;\r\n        /* grid-template-columns: 7rem 10rem 2fr 1fr; */\r\n\r\n        background: rgb(255, 255, 255);\r\n        background: linear-gradient(270deg, rgba(2,0,36,1) 0%, rgb(80, 80, 80) 0%, rgba(255,255,255,1) 100%);\r\n\r\n        border-radius: 0 2rem 2rem 0;\r\n\r\n        justify-content: center;\r\n        align-items: center;\r\n    }\r\n\r\n    .card-icon{\r\n        margin: auto;\r\n    }\r\n\r\n    .day-of-week{\r\n        text-align: center; \r\n        margin: 0;\r\n    }\r\n\r\n    .max-min{\r\n        padding-right: 5rem;\r\n        display: flex;\r\n        flex-direction: column;\r\n    }\r\n\r\n    .card-description{\r\n        font-size: 2rem; font-weight: bold;\r\n        display: flex;\r\n        justify-content: center;\r\n    }\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -929,7 +956,8 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 
-var ApiKey = "14d81a94fed64d5a93b141527242209";
+var KEY_WEATHERAPI = "14d81a94fed64d5a93b141527242209";
+var KEY_UNSPLASH = "_zIOu7GJFrGeaCwP-6A-ezFtBjXpHuLBFop4fP9gYYg";
 var form = document.querySelector(".form");
 var myLocation = document.querySelector(".myLocation");
 var input = document.querySelector('#cidade');
@@ -980,10 +1008,12 @@ function _start() {
           _context4.next = 5;
           return loadPage('clima.html');
         case 5:
-          printCurrentForecast(cidade);
+          _context4.next = 7;
+          return printCurrentForecast(cidade);
+        case 7:
           printWeekForecast(cidade);
           hideSkeleton();
-        case 8:
+        case 9:
         case "end":
           return _context4.stop();
       }
@@ -1051,7 +1081,7 @@ function _makeSuggestion() {
         case 0:
           _context6.prev = 0;
           _context6.next = 3;
-          return fetch("https://api.weatherapi.com/v1/search.json?key=".concat(ApiKey, "&q=").concat(inputValue, "&lang=pt"));
+          return fetch("https://api.weatherapi.com/v1/search.json?key=".concat(KEY_WEATHERAPI, "&q=").concat(inputValue, "&lang=pt"));
         case 3:
           request = _context6.sent;
           _context6.next = 6;
@@ -1124,7 +1154,7 @@ var WeatherForecast = /*#__PURE__*/function () {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
               _context2.next = 2;
-              return fetch("https://api.weatherapi.com/v1/forecast.json?key=".concat(ApiKey, "&q=").concat(this.lat, ",").concat(this.lon, "&days=7&aqi=no&alerts=no&lang=pt"));
+              return fetch("https://api.weatherapi.com/v1/forecast.json?key=".concat(KEY_WEATHERAPI, "&q=").concat(this.lat, ",").concat(this.lon, "&days=7&aqi=no&alerts=no&lang=pt"));
             case 2:
               request = _context2.sent;
               _context2.next = 5;
@@ -1148,33 +1178,43 @@ var WeatherForecast = /*#__PURE__*/function () {
   }]);
 }();
 ;
-function printCurrentForecast(cidade) {
-  console.log(cidade);
-  var location = cidade.previsao.location;
-  var locationName = "".concat(location.name, ", ").concat(location.region, " - ").concat(location.country);
-  console.log(locationName);
-  var elements = {
-    title: document.querySelector('.title'),
-    currentTitle: document.querySelector('.current-title'),
-    currentTemperature: document.querySelector('.current-temperature'),
-    currentTemperatureText: document.querySelector('.current-temperature-text'),
-    currentIcon: document.querySelector('.icone-grande')
-  };
-  var currentWeatherForecast = cidade.previsao.current;
-  console.log(currentWeatherForecast);
-  elements.title.innerHTML += locationName;
-  elements.currentIcon.setAttribute('src', currentWeatherForecast.condition.icon);
-  elements.currentTemperatureText.innerHTML = currentWeatherForecast.condition.text;
-  elements.currentTemperature.innerHTML += currentWeatherForecast.temp_c.toFixed(0) + cidade.unit;
+function printCurrentForecast(_x7) {
+  return _printCurrentForecast.apply(this, arguments);
+}
+function _printCurrentForecast() {
+  _printCurrentForecast = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(cidade) {
+    var location, locationName, elements, currentWeatherForecast;
+    return _regeneratorRuntime().wrap(function _callee8$(_context8) {
+      while (1) switch (_context8.prev = _context8.next) {
+        case 0:
+          console.log(cidade);
+          location = cidade.previsao.location;
+          locationName = "".concat(location.name, ", ").concat(location.region, " - ").concat(location.country);
+          console.log(locationName);
+          elements = {
+            title: document.querySelector('.title'),
+            currentTitle: document.querySelector('.current-title'),
+            currentTemperature: document.querySelector('.current-temperature'),
+            currentTemperatureText: document.querySelector('.current-temperature-text'),
+            currentIcon: document.querySelector('.icone-grande')
+          };
+          currentWeatherForecast = cidade.previsao.current;
+          console.log(currentWeatherForecast);
+          elements.title.innerHTML += locationName;
+          elements.currentIcon.setAttribute('src', currentWeatherForecast.condition.icon);
+          elements.currentTemperatureText.innerHTML = currentWeatherForecast.condition.text;
+          elements.currentTemperature.innerHTML += currentWeatherForecast.temp_c.toFixed(0) + cidade.unit;
 
-  // dynamicBG(currentWeatherCode);
-
-  function dynamicBG(e) {
-
-    // const bg = document.querySelector()
-    // console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
-    // console.log(e);
-  }
+          // dynamicBG(currentWeatherCode);
+          _context8.next = 13;
+          return setBackgroudImage(currentWeatherForecast.condition.text);
+        case 13:
+        case "end":
+          return _context8.stop();
+      }
+    }, _callee8);
+  }));
+  return _printCurrentForecast.apply(this, arguments);
 }
 ;
 function printWeekForecast(cidade) {
@@ -1213,52 +1253,8 @@ function printWeekForecast(cidade) {
     day = day.getDay();
     console.log(week[day]);
     dayOfWeek.innerHTML = week[day];
+    ajustarTamanhoFonte("#card".concat(index), "#card".concat(index, " .card-description"));
   });
-
-  // cidade.previsao.forecast.day.maxtemp_c.forEach((tempMax, index) => {
-  //     if(!index) return;
-  //     const maxTemp = document.querySelector(`#card${index} .max-line p`);
-  //     maxTemp.innerHTML = tempMax.toFixed(0);
-  // });
-
-  // cidade.previsao.forecast.day.mintemp_c.forEach((tempMin, index) => {
-  //     if(!index) return;
-  //     const minTemp = document.querySelector(`#card${index} .min-line p`);
-  //     minTemp.innerHTML = tempMin.toFixed(0);
-  // });
-
-  // cidade.previsao.daily.weather_code.forEach((icon, index) => {
-  //     if(!index) return;
-
-  //     const card = document.querySelector(`#card${index} .card-icon`);
-  //     const cardDescription = document.querySelector(`#card${index} .card-description`)
-
-  //     const weekWeatherCode = cidade.weatherCodeVerify(icon);
-  //     card.setAttribute('src', weekWeatherCode.icon);
-  //     cardDescription.innerText = weekWeatherCode.text
-  // });
-
-  // cidade.previsao.daily.time.forEach((date, index) => {
-  //     if(!index) return;
-
-  //     const dayOfWeek = document.querySelector(`#card${index} .day-of-week`);
-
-  //     week = {
-  //         0 : 'Dom',
-  //         1 : 'Seg',
-  //         2 : 'Ter',
-  //         3 : 'Qua',
-  //         4 : 'Qui',
-  //         5 : 'Sex',
-  //         6 : 'Sab'
-  //     };
-
-  //     let day = new Date(date);
-  //     day = day.getDay();
-
-  //     console.log(week[day]);
-  //     dayOfWeek.innerHTML = week[day];
-  // })   
 }
 function hideSkeleton() {
   var skeleton = document.querySelector('.skeleton');
@@ -1286,6 +1282,66 @@ myLocation.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__
     }
   }, _callee3);
 })));
+function setBackgroudImage(_x8) {
+  return _setBackgroudImage.apply(this, arguments);
+}
+function _setBackgroudImage() {
+  _setBackgroudImage = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(text) {
+    var body, request, json, imagem, img;
+    return _regeneratorRuntime().wrap(function _callee9$(_context9) {
+      while (1) switch (_context9.prev = _context9.next) {
+        case 0:
+          body = document.querySelector("body");
+          _context9.prev = 1;
+          if (document.querySelector('#bg-img')) document.querySelector('#bg-img').remove();
+          _context9.next = 5;
+          return fetch("https://api.unsplash.com/search/photos?client_id=".concat(KEY_UNSPLASH, "&lang=pt&query=clima/").concat(text, "&page=1&per_page=1"));
+        case 5:
+          request = _context9.sent;
+          _context9.next = 8;
+          return request.json();
+        case 8:
+          json = _context9.sent;
+          imagem = json.results[0].urls.regular;
+          img = document.createElement('img');
+          img.setAttribute('id', 'bg-img');
+          img.setAttribute("src", imagem);
+          body.appendChild(img);
+          _context9.next = 20;
+          break;
+        case 16:
+          _context9.prev = 16;
+          _context9.t0 = _context9["catch"](1);
+          console.log(_context9.t0);
+          throw new ReferenceError('Falha na requisiçao da imagem');
+        case 20:
+        case "end":
+          return _context9.stop();
+      }
+    }, _callee9, null, [[1, 16]]);
+  }));
+  return _setBackgroudImage.apply(this, arguments);
+}
+;
+function ajustarTamanhoFonte(box, seletor) {
+  var card = document.querySelector(box);
+  var texto = document.querySelector(seletor);
+  var tamanhoFonte = 40;
+  texto.style.fontSize = tamanhoFonte + 'px';
+  var medidas = {
+    h: card.offsetHeight,
+    w: card.offsetWidth
+  };
+  var pwidth = texto.offsetWidth;
+  while (pwidth > medidas.w) {
+    tamanhoFonte--;
+    texto.style.fontSize = tamanhoFonte + 'px';
+    pwidth = texto.offsetWidth;
+    if (tamanhoFonte <= 1) {
+      break;
+    }
+  }
+}
 })();
 
 /******/ })()

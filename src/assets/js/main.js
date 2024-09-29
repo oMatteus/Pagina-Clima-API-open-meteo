@@ -1,6 +1,8 @@
 import '../css/style.css';
 
-const ApiKey = process.env.API_KEY;
+const KEY_WEATHERAPI = process.env.API_KEY_WEATHER;
+const KEY_UNSPLASH = process.env.API_KEY_UNSPLASH;
+
 
 const form = document.querySelector(".form");
 const myLocation = document.querySelector(".myLocation");
@@ -30,7 +32,7 @@ async function start(lat,lon){
     await cidade.getForecast();
     
     await loadPage('clima.html');
-    printCurrentForecast(cidade);
+    await printCurrentForecast(cidade);
     printWeekForecast(cidade);
     hideSkeleton();
 };
@@ -59,7 +61,7 @@ function loadResult(res){
 async function makeSuggestion(inputValue){
 
     try{
-        const request = await fetch(`https://api.weatherapi.com/v1/search.json?key=${ApiKey}&q=${inputValue}&lang=pt`);
+        const request = await fetch(`https://api.weatherapi.com/v1/search.json?key=${KEY_WEATHERAPI}&q=${inputValue}&lang=pt`);
 
         const json = await request.json();    
 
@@ -110,7 +112,7 @@ class WeatherForecast{
     };
 
     async getForecast(){
-        const request = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${ApiKey}&q=${this.lat},${this.lon}&days=7&aqi=no&alerts=no&lang=pt`);
+        const request = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${KEY_WEATHERAPI}&q=${this.lat},${this.lon}&days=7&aqi=no&alerts=no&lang=pt`);
 
         const json = await request.json(); 
 
@@ -121,7 +123,7 @@ class WeatherForecast{
     };
 };
 
-function printCurrentForecast(cidade){
+async function printCurrentForecast(cidade){
 
     console.log(cidade);
     const location = cidade.previsao.location;
@@ -149,18 +151,10 @@ function printCurrentForecast(cidade){
     // dynamicBG(currentWeatherCode);
 
 
-    function dynamicBG(e){
-
-        // const bg = document.querySelector()
-        // console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
-        // console.log(e);
-
-
-    }
+    await setBackgroudImage(currentWeatherForecast.condition.text);
 };
 
 function printWeekForecast(cidade){
-
 
     cidade.previsao.forecast.forecastday.forEach((previsao, index)=>{
 
@@ -204,56 +198,10 @@ function printWeekForecast(cidade){
 
         console.log(week[day]);
         dayOfWeek.innerHTML = week[day];
+
+        ajustarTamanhoFonte(`#card${index}`,`#card${index} .card-description`)
+
     })
-
-
-    // cidade.previsao.forecast.day.maxtemp_c.forEach((tempMax, index) => {
-    //     if(!index) return;
-    //     const maxTemp = document.querySelector(`#card${index} .max-line p`);
-    //     maxTemp.innerHTML = tempMax.toFixed(0);
-    // });
-
-
-    // cidade.previsao.forecast.day.mintemp_c.forEach((tempMin, index) => {
-    //     if(!index) return;
-    //     const minTemp = document.querySelector(`#card${index} .min-line p`);
-    //     minTemp.innerHTML = tempMin.toFixed(0);
-    // });
-
-
-    // cidade.previsao.daily.weather_code.forEach((icon, index) => {
-    //     if(!index) return;
-
-    //     const card = document.querySelector(`#card${index} .card-icon`);
-    //     const cardDescription = document.querySelector(`#card${index} .card-description`)
-
-    //     const weekWeatherCode = cidade.weatherCodeVerify(icon);
-    //     card.setAttribute('src', weekWeatherCode.icon);
-    //     cardDescription.innerText = weekWeatherCode.text
-    // });
-
-    // cidade.previsao.daily.time.forEach((date, index) => {
-    //     if(!index) return;
-
-    //     const dayOfWeek = document.querySelector(`#card${index} .day-of-week`);
-
-    //     week = {
-    //         0 : 'Dom',
-    //         1 : 'Seg',
-    //         2 : 'Ter',
-    //         3 : 'Qua',
-    //         4 : 'Qui',
-    //         5 : 'Sex',
-    //         6 : 'Sab'
-    //     };
-        
-    //     let day = new Date(date);
-    //     day = day.getDay();
-
-    //     console.log(week[day]);
-    //     dayOfWeek.innerHTML = week[day];
-    // })   
-
 
 }
 
@@ -280,6 +228,54 @@ myLocation.addEventListener('click', async()=>{
     getGeolocation()
 });
 
+async function setBackgroudImage(text){
 
+    const body = document.querySelector("body");
 
+    try {
 
+        if(document.querySelector('#bg-img')) document.querySelector('#bg-img').remove();
+
+        const request = await fetch(`https://api.unsplash.com/search/photos?client_id=${KEY_UNSPLASH}&lang=pt&query=clima/${text}&page=1&per_page=1`);
+
+        const json = await request.json();
+        const imagem = json.results[0].urls.regular;
+
+        const img = document.createElement('img')
+
+        img.setAttribute('id', 'bg-img')
+        img.setAttribute(`src`, imagem);
+
+        body.appendChild(img);
+    } catch (error) {
+        console.log(error);
+        throw new ReferenceError('Falha na requisiçao da imagem');
+    }
+};
+
+function ajustarTamanhoFonte(box, seletor) {
+
+    let card = document.querySelector(box);
+    let texto = document.querySelector(seletor);
+    let tamanhoFonte = 40;
+    texto.style.fontSize = tamanhoFonte + 'px';
+
+    const medidas = {
+        h: card.offsetHeight,
+        w: card.offsetWidth
+    }
+
+    let pwidth = texto.offsetWidth;
+
+    while(pwidth > medidas.w){
+        
+        tamanhoFonte--;
+        texto.style.fontSize = tamanhoFonte + 'px';
+        pwidth = texto.offsetWidth;
+
+        if (tamanhoFonte <= 1){
+            break;
+        }
+    }
+
+  }
