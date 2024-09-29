@@ -3,8 +3,6 @@ import '../css/style.css';
 const KEY_WEATHERAPI = process.env.API_KEY_WEATHER;
 const KEY_UNSPLASH = process.env.API_KEY_UNSPLASH;
 
-
-const form = document.querySelector(".form");
 const myLocation = document.querySelector(".myLocation");
 
 const input = document.querySelector('#cidade');
@@ -241,12 +239,15 @@ async function setBackgroudImage(text){
         const json = await request.json();
         const imagem = json.results[0].urls.regular;
 
-        const img = document.createElement('img')
+        const img = document.createElement('img');
 
-        img.setAttribute('id', 'bg-img')
+        img.setAttribute('id', 'bg-img');
         img.setAttribute(`src`, imagem);
+        body.style.backgroundImage = `url('${imagem}')`;
+        body.style.backgroundSize = `cover`;
 
         body.appendChild(img);
+
     } catch (error) {
         console.log(error);
         throw new ReferenceError('Falha na requisiçao da imagem');
@@ -270,6 +271,7 @@ function ajustarTamanhoFonte(box, seletor) {
     while(pwidth > medidas.w){
         
         tamanhoFonte--;
+        console.log(tamanhoFonte + ' Tamanho da fonta para '+ box);
         texto.style.fontSize = tamanhoFonte + 'px';
         pwidth = texto.offsetWidth;
 
